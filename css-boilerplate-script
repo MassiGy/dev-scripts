@@ -1,0 +1,33 @@
+#!/bin/bash
+
+
+if [ $( ls *.css 2>/dev/null )  ]; then
+	echo "it seems that another css project is going on"
+	echo "a css file has been found, please delete it then execute the scripte again"
+	echo "exiting bash script"
+	exit
+fi
+
+if [ "$1" ]; then
+	cssFile=$1
+else
+	cssFile="style.css"
+fi 
+
+
+echo "
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; /* like so, 1rem=10px  */
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+" >> $cssFile
