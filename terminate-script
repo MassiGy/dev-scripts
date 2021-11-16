@@ -13,7 +13,8 @@ if [ ! "$1"  ]; then
 	echo "Status: exiting with status 1."
 fi 
 
-if [ "$1" == *'*'*  ]; then
+
+if [ $(expr index '*' "$1" ) -ne 0  ]; then
         echo "WARNING: your arguments contain a greedy expression character"
         echo "WARNING: your arguments contains a '*' character"
         echo "WARNING: this can terminate multiple process at one time"
