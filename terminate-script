@@ -1,0 +1,46 @@
+#!/bin/bash
+
+
+
+
+# this script is designed to kill all the processes that are made by a given application
+# this script will take as an argument an application name, then terminate it
+
+
+if [ ! "$1"  ]; then 
+	echo "Error : missing arguments."
+	echo "Usage : terminate <job-name>"
+	echo "Status: exiting with status 1."
+fi 
+
+if [ "$1" == *'*'*  ]; then
+        echo "WARNING: your arguments contain a greedy expression character"
+        echo "WARNING: your arguments contains a '*' character"
+        echo "WARNING: this can terminate multiple process at one time"
+        echo "PROMPT : Do you want to continue? y/n"
+        read answer
+        if [ $answer == 'n' ]; then
+                echo "Satatus: exiting with status 2."
+                exit;
+        fi
+fi
+
+
+
+
+
+# steps
+# fetch all the processes 
+# find all the processes related to the passed job name
+# print the second feild of each line, which correspends to the process id
+# for each id, stop it.
+
+
+for element in $(ps -aux | grep "$1" | awk '{printf "%i\n", $2}' )
+do 
+	kill -9 $element;
+done
+
+# NOTE: the "$2" in the awk printf command refers to the second feild of each line of text returned
+#	by grep "$1"
+
