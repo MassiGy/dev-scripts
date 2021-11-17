@@ -36,10 +36,8 @@ tag=$(echo "
 </style>
 ");
 
-echo "tag is: $tag"
 #find the link tag that leads to the css file, replace it with the styletag
 pattern=$( cat "$2" | grep "$1" );
-echo "pattern is $pattern"
 # now we need to cut the pattern form the html file and paste the css code 
 
 while IFS= read -r line; do
